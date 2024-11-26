@@ -1,0 +1,145 @@
+<html>
+
+<head>
+	<style>
+		.ground-green {
+			position: absolute; 
+			top: calc(371px*0.7); 
+			left: calc(19px*0.7);
+
+		}
+		.road {
+			position: absolute;
+		  	left: calc(1666px*0.7 + -34px);
+		  	top: 26px;
+
+		}
+		.zombie-land {
+			top: 26px;
+			left: calc(1666px*0.7 + -34px);
+			position: absolute;
+		}
+		.zombie-story-moving {
+			position: absolute;
+			top: calc(371px*0.7 - 65px);
+			left: calc(1659px*0.7)
+		}
+		.zombie-story-eats {
+			position: absolute;
+			top: calc(371px*0.7 - 65px);
+			left: calc(1659px*0.7 - 400px)
+		}
+		.plant-story-moving {
+			position: absolute;
+			top: calc(371px*0.7);
+			left: calc(1659px*0.7 - 740px)
+		}
+		.ball-story-moving {
+			position: absolute;
+			top: calc(371px*0.7);
+			left: calc(1659px*0.7 - 660px)
+		}
+		
+
+	</style>
+</head>
+<body style="position: relative">
+
+	<img src="core-lib/ground.png" style="width: calc(1666px*0.7);">
+	<img class="road" src="core-lib/road.png" style="width: calc(1141px*0.7);">
+	<img class="zombie-land" src="core-lib/zombie-land.png" style="width: calc(636px*0.7);">
+
+	<!-- <img class="sun-panel" src="core-lib/sun-panel.png" style="width: calc(741px*0.7);"> -->
+
+	<img class="ground-green" src="core-lib/ground-green.png" style="width: calc(1659px*0.7);">
+
+
+	<img class="plant-story-moving" src="core-lib/plant-stand.png" style="width: calc(132px*0.7);">
+
+	<img class="zombie-story-moving" src="core-lib/zombie-stand.png" style="width: calc(175px*0.7);">
+
+
+	<!-- <img class="zombie-stand" src="core-lib/zombie-stand.png" style="width: calc(175px*0.7);"> -->
+
+	<!-- <img class="zombie-movin" src="core-lib/zombie-movin.png" style="width: calc(175px*0.7);"> -->
+
+
+
+	<img class="zombie-story-eats" src="core-lib/zombie-stand.png" style="width: calc(175px*0.7);">
+
+	<!-- <img class="zombie-eats-1" src="core-lib/zombie-eat-1.png" style="width: calc(175px*0.7);"> -->
+
+	<!-- <img class="zombie-eats-2" src="core-lib/zombie-eat-2.png" style="width: calc(175px*0.7);"> -->
+
+	<!-- <img class="zombie-eats-3" src="core-lib/zombie-eat-3.png" style="width: calc(175px*0.7);"> -->
+
+
+	<img class="ball-story-moving" src="core-lib/ball.png" style="width: calc(45px*0.7);">
+
+	<script>
+		(function(){
+			let imgArr = ['core-lib/zombie-stand.png', 'core-lib/zombie-movin.png']
+			let positionArr = 10
+
+			let imgIndex = 0
+			let slidingRight = 0
+
+			setInterval(function(){
+				imgIndex = imgIndex+1
+				if(imgIndex >= imgArr.length) {
+					imgIndex = 0
+				}
+				slidingRight += 1
+				if(slidingRight > 14) {
+					slidingRight = 0
+				}
+				document.querySelector('.zombie-story-moving').src = imgArr[imgIndex]
+				document.querySelector('.zombie-story-moving').style.left = `calc(1659px*0.7 - ${slidingRight * 20}px)`
+			}, 400)
+
+		})()
+;
+
+		(function(){
+			let imgArr = ['core-lib/zombie-eat-1.png', 'core-lib/zombie-eat-2.png', 'core-lib/zombie-eat-3.png']
+			let imgIndex = 0
+
+
+			setInterval(function(){
+				imgIndex = imgIndex+1
+				console.log(imgIndex)
+				if(imgIndex >= imgArr.length) {
+					imgIndex = 0
+				}
+				// console.log(imgArr[imgIndex])
+				document.querySelector('.zombie-story-eats').src = imgArr[imgIndex]
+			}, 400)
+		})()
+;
+
+(function(){
+	let imgArr = ['core-lib/plant-stand.png', 'core-lib/plant-attack.png', 'core-lib/plant-stand.png', 'core-lib/plant-stand.png', 'core-lib/plant-stand.png', 'core-lib/plant-stand.png', 'core-lib/plant-stand.png', 'core-lib/plant-stand.png', 'core-lib/plant-stand.png', 'core-lib/plant-stand.png', 'core-lib/plant-stand.png', 'core-lib/plant-stand.png', 'core-lib/plant-stand.png', 'core-lib/plant-stand.png', 'core-lib/plant-stand.png']
+	let imgIndex = 0
+	let slidingLeft = 0
+
+
+	setInterval(function(){
+		imgIndex = imgIndex+1
+		console.log(imgIndex)
+		if(imgIndex >= imgArr.length) {
+			imgIndex = 0
+		}
+		slidingLeft += 1
+		if(slidingLeft > 14) {
+			slidingLeft = 0
+		}
+		// console.log(imgArr[imgIndex])
+		document.querySelector('.plant-story-moving').src = imgArr[imgIndex]
+		document.querySelector('.ball-story-moving').style.left = `calc(1659px*0.7 - 660px + ${slidingLeft * 40}px)`
+	}, 400)
+})()
+		
+	</script>
+
+</body>
+</html>
