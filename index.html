@@ -2,42 +2,69 @@
 
 <head>
 	<style>
+		.ground {
+			margin-top: calc(181px - 106px);
+			margin-left: 425px;
+		}
 		.ground-green {
 			position: absolute; 
 			top: calc(371px*0.7); 
 			left: calc(19px*0.7);
-
+			margin-top: calc(181px - 106px);
+			margin-left: 425px;
 		}
 		.road {
 			position: absolute;
-		  	left: calc(1666px*0.7 + -34px);
 		  	top: 26px;
+		  	left: calc(1666px*0.7 + -34px);
+		  	margin-top: calc(181px - 106px);
+		  	margin-left: 425px;
 
 		}
 		.zombie-land {
+			position: absolute;
 			top: 26px;
 			left: calc(1666px*0.7 + -34px);
+			margin-top: calc(181px - 106px);
+			margin-left: 425px;
+		}
+		.house {
 			position: absolute;
+			left: -14px;
+			top: 0px;
+		}
+		.sun-panel {
+			position: absolute;
+			left: 66px; 
+			top: 0px;
 		}
 		.zombie-story-moving {
 			position: absolute;
 			top: calc(371px*0.7 - 65px);
-			left: calc(1659px*0.7)
+			left: calc(1659px*0.7);
+			margin-top: calc(181px - 106px);
+  			margin-left: 425px;
 		}
 		.zombie-story-eats {
 			position: absolute;
 			top: calc(371px*0.7 - 65px);
-			left: calc(1659px*0.7 - 400px)
+			left: calc(1659px*0.7 - 400px);
+			margin-top: calc(181px - 106px);
+  			margin-left: 425px;
 		}
 		.plant-story-moving {
 			position: absolute;
 			top: calc(371px*0.7);
-			left: calc(1659px*0.7 - 740px)
+			left: calc(1659px*0.7 - 740px);
+			margin-top: calc(181px - 106px);
+			margin-left: 425px;
 		}
 		.ball-story-moving {
 			position: absolute;
 			top: calc(371px*0.7);
-			left: calc(1659px*0.7 - 660px)
+			left: calc(1659px*0.7 - 660px);
+			margin-top: calc(181px - 106px);
+  			margin-left: 425px;
 		}
 		
 
@@ -45,13 +72,19 @@
 </head>
 <body style="position: relative">
 
-	<img src="core-lib/ground.png" style="width: calc(1666px*0.7);">
+	<img class="ground" src="core-lib/ground.png" style="width: calc(1666px*0.7);">
+
 	<img class="road" src="core-lib/road.png" style="width: calc(1141px*0.7);">
+	
 	<img class="zombie-land" src="core-lib/zombie-land.png" style="width: calc(636px*0.7);">
 
-	<!-- <img class="sun-panel" src="core-lib/sun-panel.png" style="width: calc(741px*0.7);"> -->
-
 	<img class="ground-green" src="core-lib/ground-green.png" style="width: calc(1659px*0.7);">
+
+
+	<img class="house" src="core-lib/house.png" style="width: calc(679px*0.7);">
+
+	<img class="sun-panel" src="core-lib/sun-panel.png" style="width: calc(741px*0.7);">
+
 
 
 	<img class="plant-story-moving" src="core-lib/plant-stand.png" style="width: calc(132px*0.7);">
@@ -59,19 +92,7 @@
 	<img class="zombie-story-moving" src="core-lib/zombie-stand.png" style="width: calc(175px*0.7);">
 
 
-	<!-- <img class="zombie-stand" src="core-lib/zombie-stand.png" style="width: calc(175px*0.7);"> -->
-
-	<!-- <img class="zombie-movin" src="core-lib/zombie-movin.png" style="width: calc(175px*0.7);"> -->
-
-
-
 	<img class="zombie-story-eats" src="core-lib/zombie-stand.png" style="width: calc(175px*0.7);">
-
-	<!-- <img class="zombie-eats-1" src="core-lib/zombie-eat-1.png" style="width: calc(175px*0.7);"> -->
-
-	<!-- <img class="zombie-eats-2" src="core-lib/zombie-eat-2.png" style="width: calc(175px*0.7);"> -->
-
-	<!-- <img class="zombie-eats-3" src="core-lib/zombie-eat-3.png" style="width: calc(175px*0.7);"> -->
 
 
 	<img class="ball-story-moving" src="core-lib/ball.png" style="width: calc(45px*0.7);">
