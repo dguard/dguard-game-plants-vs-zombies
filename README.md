@@ -3,7 +3,7 @@
 [DEMO](https://dguard.github.io/dguard-game-plants-vs-zombies/)
 
 ## Captures
-  <img src="./captures/plant-attack-at-zombie-land.gif" />
+  <img src="./captures/plant-attack.gif" />
 
 ## Installation
 
