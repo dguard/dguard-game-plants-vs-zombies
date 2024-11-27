@@ -2,5 +2,18 @@
 
 [DEMO](https://dguard.github.io/dguard-game-plants-vs-zombies/)
 
-## How this looks
+## Captures
   <img src="./captures/plant-attack.gif" />
+
+## Installation
+
+Everything is ready
+
+
+## Running the app
+
+open `index.html`
+
+## Stay in touch
+
+- Contributor: [Alexander Serditov](mailto:mededr90@gmail.com)
