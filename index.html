@@ -66,6 +66,12 @@
 			margin-top: calc(181px - 106px);
   			margin-left: 425px;
 		}
+		.sun-ball-story {
+			position: absolute;
+			top: 0;
+			left: calc(57px + 406px);
+			display: none;
+		}
 		
 
 	</style>
@@ -75,7 +81,7 @@
 	<img class="ground" src="core-lib/ground.png" style="width: calc(1666px*0.7);">
 
 	<img class="road" src="core-lib/road.png" style="width: calc(1141px*0.7);">
-	
+
 	<img class="zombie-land" src="core-lib/zombie-land.png" style="width: calc(636px*0.7);">
 
 	<img class="ground-green" src="core-lib/ground-green.png" style="width: calc(1659px*0.7);">
@@ -89,17 +95,19 @@
 
 	<img class="plant-story-moving" src="core-lib/plant-stand.png" style="width: calc(132px*0.7);">
 
-	<img class="zombie-story-moving" src="core-lib/zombie-stand.png" style="width: calc(175px*0.7);">
+	<img class="zombie-story-moving" src="core-lib/zombie-stand.png" style="width: calc(240px*0.7);">
 
 
-	<img class="zombie-story-eats" src="core-lib/zombie-stand.png" style="width: calc(175px*0.7);">
+	<img class="zombie-story-eats" src="core-lib/zombie-stand.png" style="width: calc(240px*0.7);">
 
 
 	<img class="ball-story-moving" src="core-lib/ball.png" style="width: calc(45px*0.7);">
 
+	<img class="sun-ball-story" src="core-lib/sun-ball.png" style="width: calc(164px*0.7);">
+
 	<script>
 		(function(){
-			let imgArr = ['core-lib/zombie-stand.png', 'core-lib/zombie-movin.png']
+			let imgArr = ['core-lib/zombie-stand.png', 'core-lib/zombie-movin.png', 'core-lib/zombie-stand.png', 'core-lib/zombie-movin.png', 'core-lib/zombie-stand.png', 'core-lib/zombie-movin.png', 'core-lib/zombie-stand.png', 'core-lib/zombie-movin.png', 'core-lib/zombie-stand.png', 'core-lib/zombie-movin.png', 'core-lib/zombie-stand.png', 'core-lib/zombie-movin.png', 'core-lib/zombie-first-attack.png', 'core-lib/zombie-first-attack-closin.png', 'core-lib/zombie-second-attack.png']
 			let positionArr = 10
 
 			let imgIndex = 0
@@ -128,7 +136,7 @@
 
 			setInterval(function(){
 				imgIndex = imgIndex+1
-				console.log(imgIndex)
+				// console.log(imgIndex)
 				if(imgIndex >= imgArr.length) {
 					imgIndex = 0
 				}
@@ -146,7 +154,16 @@
 
 	setInterval(function(){
 		imgIndex = imgIndex+1
-		console.log(imgIndex)
+		document.querySelector('.ball-story-moving').src = 'core-lib/ball.png'
+		// console.log(imgIndex)
+		if(imgIndex == 11) {
+			setTimeout(function(){
+				document.querySelector('.ball-story-moving').src = 'core-lib/ball-attack-closin.png'
+			}, 100)
+		}
+		if(imgIndex > 11) {
+			document.querySelector('.ball-story-moving').src = 'core-lib/ball-attack-closin.png'
+		}
 		if(imgIndex >= imgArr.length) {
 			imgIndex = 0
 		}
@@ -156,10 +173,90 @@
 		}
 		// console.log(imgArr[imgIndex])
 		document.querySelector('.plant-story-moving').src = imgArr[imgIndex]
-		document.querySelector('.ball-story-moving').style.left = `calc(1659px*0.7 - 660px + ${slidingLeft * 40}px)`
+		document.querySelector('.ball-story-moving').style.left = `calc(1659px*0.7 - 660px + ${slidingLeft * 44}px)`
 	}, 400)
 })()
+
+;
+let getRandomInt = function(min, max){
+	return Math.floor(min + Math.random() * (max - min + 1))
+}
+
+
+let sunSpawnCounter = 0
+
+function SunBall(slidingLeft, slidingTop, instanceId, slidingTopLimit) {
+	this.slidingLeft = slidingLeft
+	this.slidingTop = slidingTop
+	this.instanceId = instanceId
+	this.slidingTopLimit = slidingTopLimit
+
+	let element
+	this.getElement = function() {
+		return element
+	}
+	this.setElement = function(el) {
+		element = el
+	}
+	this.destroy = function() {
+		setTimeout(function(){
+			element.remove()
+		}, getRandomInt(4, 8) * 200)
+	}
+	this.animate = function() {
+		if(sunBall.animationComplete === false) {
+			sunBall.slidingTop += 1
+		}
 		
+		if(sunBall.slidingTop > sunBall.slidingTopLimit) {
+			sunBall.slidingTop = sunBall.slidingTopLimit
+			sunBall.animationComplete = true
+			sunBall.destroy()
+		}
+		// console.log(imgArr[imgIndex])
+		element.style.top = `calc(${sunBall.slidingTop * 20}px)`
+
+		element.style.left = `calc(57px + 406px + ${sunBall.slidingLeft * 37}px)`
+		element.style.display = `initial`
+	}
+
+	this.animationComplete = false
+}
+
+let spawnBall = function() {
+
+	let slidingLeft = getRandomInt(1, 14)
+	let SLIDING_TOP_ARR = [18, 22, 26, 30, 34]
+	let slidingTopLimit = SLIDING_TOP_ARR[getRandomInt(0, 3)]
+	let sunBallInstanceCounter = 0
+	let slidingTop = 0
+
+
+	let newNode = document.querySelector('.sun-ball-story').cloneNode(false)
+	newNode.dataset['instanceId'] = `${sunSpawnCounter}`
+	
+	document.querySelector('body').append(newNode)
+
+	sunBall = new SunBall(slidingLeft, slidingTop, sunBallInstanceCounter, slidingTopLimit)
+
+	sunBall.setElement(newNode)
+	return sunBall
+}
+;
+(function(){
+	
+	let sunBall = spawnBall()
+	console.log(sunBall)
+
+	setInterval(function(){
+		if(sunBall.animationComplete === false) {
+			sunBall.animate()
+		} else if(sunBall.animationComplete === true) {
+			sunBall = spawnBall()
+		}
+	}, 200)
+})()
+;
 	</script>
 
 </body>
